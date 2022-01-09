@@ -1,0 +1,837 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API",
+    "version": "1.0.0",
+    "description": "Property Client Finder API"
+  },
+  "host": "localhost:3005",
+  "basePath": "/api/v1",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "authorization",
+      "scheme": "bearer",
+      "in": "header"
+    }
+  },
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/registerBroker": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/loginBroker": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/changePassword": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "oldPassword": {
+                  "example": "any"
+                },
+                "newPassword": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/allProperty": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/allProperty/{clientId}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/getProperty/{propertyId}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/addLand": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "landArea": {
+                  "example": "any"
+                },
+                "roadAccess": {
+                  "example": "any"
+                },
+                "waterSupply": {
+                  "example": "any"
+                },
+                "images": {
+                  "example": "any"
+                },
+                "province": {
+                  "example": "any"
+                },
+                "district": {
+                  "example": "any"
+                },
+                "municipality": {
+                  "example": "any"
+                },
+                "ward": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "latitude": {
+                  "example": "any"
+                },
+                "longitude": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/editLand/{propertyId}": {
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "landArea": {
+                  "example": "any"
+                },
+                "roadAccess": {
+                  "example": "any"
+                },
+                "waterSupply": {
+                  "example": "any"
+                },
+                "images": {
+                  "example": "any"
+                },
+                "province": {
+                  "example": "any"
+                },
+                "district": {
+                  "example": "any"
+                },
+                "municipality": {
+                  "example": "any"
+                },
+                "ward": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "latitude": {
+                  "example": "any"
+                },
+                "longitude": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/deleteLand/{propertyId}": {
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/addHome": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "landArea": {
+                  "example": "any"
+                },
+                "roadAccess": {
+                  "example": "any"
+                },
+                "waterSupply": {
+                  "example": "any"
+                },
+                "kitchens": {
+                  "example": "any"
+                },
+                "bathrooms": {
+                  "example": "any"
+                },
+                "bedrooms": {
+                  "example": "any"
+                },
+                "floors": {
+                  "example": "any"
+                },
+                "images": {
+                  "example": "any"
+                },
+                "province": {
+                  "example": "any"
+                },
+                "district": {
+                  "example": "any"
+                },
+                "municipality": {
+                  "example": "any"
+                },
+                "ward": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "latitude": {
+                  "example": "any"
+                },
+                "longitude": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/editHome/{propertyId}": {
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "landArea": {
+                  "example": "any"
+                },
+                "roadAccess": {
+                  "example": "any"
+                },
+                "waterSupply": {
+                  "example": "any"
+                },
+                "kitchens": {
+                  "example": "any"
+                },
+                "bathrooms": {
+                  "example": "any"
+                },
+                "bedrooms": {
+                  "example": "any"
+                },
+                "floors": {
+                  "example": "any"
+                },
+                "images": {
+                  "example": "any"
+                },
+                "province": {
+                  "example": "any"
+                },
+                "district": {
+                  "example": "any"
+                },
+                "municipality": {
+                  "example": "any"
+                },
+                "ward": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "latitude": {
+                  "example": "any"
+                },
+                "longitude": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/deleteHome/{propertyId}": {
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/allClient": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/allClient/{propertyId}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/getClient/{clientId}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/addClient": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "propertyType": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "landArea": {
+                  "example": "any"
+                },
+                "waterSupply": {
+                  "example": "any"
+                },
+                "roadAccess": {
+                  "example": "any"
+                },
+                "kitchens": {
+                  "example": "any"
+                },
+                "bathrooms": {
+                  "example": "any"
+                },
+                "floors": {
+                  "example": "any"
+                },
+                "bedrooms": {
+                  "example": "any"
+                },
+                "province": {
+                  "example": "any"
+                },
+                "district": {
+                  "example": "any"
+                },
+                "municipality": {
+                  "example": "any"
+                },
+                "ward": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "latitude": {
+                  "example": "any"
+                },
+                "longitude": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/editClient/{clientId}": {
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "propertyType": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "landArea": {
+                  "example": "any"
+                },
+                "waterSupply": {
+                  "example": "any"
+                },
+                "roadAccess": {
+                  "example": "any"
+                },
+                "kitchens": {
+                  "example": "any"
+                },
+                "bathrooms": {
+                  "example": "any"
+                },
+                "floors": {
+                  "example": "any"
+                },
+                "bedrooms": {
+                  "example": "any"
+                },
+                "province": {
+                  "example": "any"
+                },
+                "district": {
+                  "example": "any"
+                },
+                "municipality": {
+                  "example": "any"
+                },
+                "ward": {
+                  "example": "any"
+                },
+                "street": {
+                  "example": "any"
+                },
+                "latitude": {
+                  "example": "any"
+                },
+                "longitude": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/deleteClient/{clientId}": {
+      "delete": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

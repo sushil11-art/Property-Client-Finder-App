@@ -1,0 +1,414 @@
+{
+    "tables": {
+        "brokers": {
+            "tableName": "brokers",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "username": {
+                    "field": "username",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "imageUrl": {
+                    "field": "imageUrl",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "clients": {
+            "tableName": "clients",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone": {
+                    "field": "phone",
+                    "seqType": "Sequelize.BIGINT"
+                },
+                "email": {
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "propertyType": {
+                    "defaultValue": {
+                        "value": 0
+                    },
+                    "field": "propertyType",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "price": {
+                    "field": "price",
+                    "seqType": "Sequelize.DOUBLE PRECISION"
+                },
+                "landArea": {
+                    "field": "landArea",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "roadAccess": {
+                    "field": "roadAccess",
+                    "seqType": "Sequelize.STRING"
+                },
+                "waterSupply": {
+                    "field": "waterSupply",
+                    "seqType": "Sequelize.STRING"
+                },
+                "kitchens": {
+                    "field": "kitchens",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "bathrooms": {
+                    "field": "bathrooms",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "floors": {
+                    "field": "floors",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "bedrooms": {
+                    "field": "bedrooms",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "brokerId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "brokers",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "brokerId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "requiredlocationId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "requiredlocations",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "requiredlocationId",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "lands": {
+            "tableName": "lands",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "price": {
+                    "field": "price",
+                    "seqType": "Sequelize.DOUBLE PRECISION"
+                },
+                "landArea": {
+                    "field": "landArea",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "roadAccess": {
+                    "field": "roadAccess",
+                    "seqType": "Sequelize.STRING"
+                },
+                "waterSupply": {
+                    "field": "waterSupply",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "homes": {
+            "tableName": "homes",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "price": {
+                    "field": "price",
+                    "seqType": "Sequelize.DOUBLE PRECISION"
+                },
+                "landArea": {
+                    "field": "landArea",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "roadAccess": {
+                    "field": "roadAccess",
+                    "seqType": "Sequelize.STRING"
+                },
+                "waterSupply": {
+                    "field": "waterSupply",
+                    "seqType": "Sequelize.STRING"
+                },
+                "kitchens": {
+                    "field": "kitchens",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "bathrooms": {
+                    "field": "bathrooms",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "floors": {
+                    "field": "floors",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "bedrooms": {
+                    "field": "bedrooms",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "locations": {
+            "tableName": "locations",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "province": {
+                    "field": "province",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "district": {
+                    "field": "district",
+                    "seqType": "Sequelize.STRING"
+                },
+                "municipality": {
+                    "field": "municipality",
+                    "seqType": "Sequelize.STRING"
+                },
+                "ward": {
+                    "field": "ward",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "street": {
+                    "field": "street",
+                    "seqType": "Sequelize.STRING"
+                },
+                "latitude": {
+                    "field": "latitude",
+                    "seqType": "Sequelize.DOUBLE PRECISION"
+                },
+                "longitude": {
+                    "field": "longitude",
+                    "seqType": "Sequelize.DOUBLE PRECISION"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "properties": {
+            "tableName": "properties",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "sellStatus": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "sellStatus",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "images": {
+                    "field": "images",
+                    "seqType": "Sequelize.TEXT"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "landId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "lands",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "landId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "homeId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "homes",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "homeId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "brokerId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "brokers",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "brokerId",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "locationId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "locations",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "locationId",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "requiredlocations": {
+            "tableName": "requiredlocations",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "province": {
+                    "field": "province",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "district": {
+                    "field": "district",
+                    "seqType": "Sequelize.STRING"
+                },
+                "municipality": {
+                    "field": "municipality",
+                    "seqType": "Sequelize.STRING"
+                },
+                "ward": {
+                    "field": "ward",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "street": {
+                    "field": "street",
+                    "seqType": "Sequelize.STRING"
+                },
+                "latitude": {
+                    "field": "latitude",
+                    "seqType": "Sequelize.DOUBLE PRECISION"
+                },
+                "longitude": {
+                    "field": "longitude",
+                    "seqType": "Sequelize.DOUBLE PRECISION"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 1
+}
