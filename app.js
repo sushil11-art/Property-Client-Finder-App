@@ -15,7 +15,7 @@ const db = require('./models');
 const { uploadFilesMiddleware, uploadFileMiddleware } = require('./middlewares/upload');
 
 // swagger import
-const swaggerUi = require('swagger-ui-express')
+// const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json');
 
 // const swaggerFile = require("./swagger_output.json");
@@ -63,7 +63,7 @@ app.use(cors(corsOptionsDelegate));
  app.use('', indexRouter);
 
 //  use swagger doc
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
 // catch 404 and forward to error handler
