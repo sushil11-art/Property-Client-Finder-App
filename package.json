@@ -21,7 +21,6 @@
     "start":"node ./bin/www",
     "swagger-autogen": "node swagger.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:makemigrations": "./node_modules/sequelize-auto-migrations/bin/makemigration.js",
     "db:migrate": "npx sequelize db:migrate"
   },
   "dependencies": {
