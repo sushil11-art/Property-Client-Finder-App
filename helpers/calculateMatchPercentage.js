@@ -69,7 +69,7 @@ const calculateOverallPercentageMatch = async (
       matchPercentageOfFloors * 0.1;
   }
 
-  console.log("average", averageMatchPercentage);
+  // console.log("average", averageMatchPercentage);
   return averageMatchPercentage;
 };
 
