@@ -14,10 +14,12 @@ const clientValidation = [
     .trim()
     .isInt()
     .withMessage("Property Type must be an integer"),
-  body("phone")
-    .isMobilePhone()
+    body("phone")
     .not()
     .isEmpty()
+    .isInt()
+    .trim()
+    // .matches(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g)
     .withMessage("Valid mobile number is required"),
 
   // oneOf([
