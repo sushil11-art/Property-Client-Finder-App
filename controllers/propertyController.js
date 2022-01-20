@@ -17,6 +17,7 @@ const {
 } = require("../services/propertyService");
 const { validationResult } = require("express-validator");
 const { landValidation } = require("../validation/propertyValidation");
+const { generatePropertyArea } = require("../helpers/convertArea");
 
 // const { uploadProperty } = require("./uploadController");
 
@@ -25,7 +26,8 @@ const addLand = async (req, res, next) => {
     const brokerId = req.user.user.id;
     const {
       price,
-      landArea,
+      ropani,
+      aana,
       roadAccess,
       waterSupply,
       images,
@@ -38,6 +40,7 @@ const addLand = async (req, res, next) => {
       longitude,
     } = req.body;
     const { land, location } = await landData(req.body);
+    console.log(land);
     let newProperty = await addPropertyLand(land, location, brokerId, req);
     return res.send(newProperty);
   } catch (err) {
@@ -51,7 +54,8 @@ const addHome = asyncHandler(async (req, res, next) => {
     const brokerId = req.user.user.id;
     const {
       price,
-      landArea,
+      ropani,
+      aana,
       roadAccess,
       waterSupply,
       kitchens,
@@ -85,7 +89,8 @@ const editLand = asyncHandler(async (req, res, next) => {
     const brokerId = req.user.user.id;
     const {
       price,
-      landArea,
+      ropani,
+      aana,
       roadAccess,
       waterSupply,
       images,
@@ -125,7 +130,8 @@ const editHome = asyncHandler(async (req, res, next) => {
     const brokerId = req.user.user.id;
     const {
       price,
-      landArea,
+      ropani,
+      aana,
       roadAccess,
       waterSupply,
       kitchens,
@@ -211,8 +217,26 @@ const deleteHome = asyncHandler(async (req, res, next) => {
 const getAllProperty = asyncHandler(async (req, res, next) => {
   try {
     const brokerId = req.user.user.id;
-    const properties = await findProperties(brokerId);
-    console.log(properties);
+    const docs = await findProperties(brokerId);
+    // console.log(properties);
+    // convert propertyArea into ropani,aana
+    let properties=docs.map((doc)=>{
+      let area;
+      if(doc.dataValues.land !=null){
+        
+        area= generatePropertyArea (doc.dataValues.land.landArea);
+      }
+      else{
+        area= generatePropertyArea( doc.dataValues.home.landArea);
+      }
+      return{
+        ...doc.dataValues,
+        area
+      }
+    })
+
+    // console.log(properties);
+
     return res.send(properties);
   } catch (err) {
     console.log(err);
@@ -224,11 +248,19 @@ const getPropertyDetails = asyncHandler(async (req, res, next) => {
   try {
     const brokerId = req.user.user.id;
     const id = req.params.propertyId;
-    const property = await findPropertyDetails(id, brokerId);
-    if (!property)
+    const doc= await findPropertyDetails(id, brokerId);
+    if (!doc)
       return res
         .status(400)
         .json({ errors: [{ message: "Cannot find a property " }] });
+    if(doc.dataValues.land !=null){
+      area= generatePropertyArea(doc.dataValues.land.landArea);
+    }
+    else{
+      area=  generatePropertyArea( doc.dataValues.home.landArea);
+
+    }
+    let property={...doc.dataValues,area};
     return res.send(property);
   } catch (err) {
     console.log(err);
@@ -253,6 +285,8 @@ const allPropertyForClientLocation = asyncHandler(async (req, res, next) => {
       requiredlocation.dataValues.longitude,
       client
     );
+    // console.log("matching properties hai........")
+    // console.log(properties);
     // console.log(requiredlocation);
     return res.send(properties);
   } catch (err) {

@@ -10,14 +10,32 @@ const landValidation = [
     .withMessage(
       "Price cannot be empty,must be an integer or floating point number"
     ),
-  body("landArea")
+  // body("landArea")
+  //   .not()
+  //   .isEmpty()
+  //   .trim()
+  //   .toFloat()
+  //   .isFloat()
+  //   .withMessage(
+  //     "Land area cannot be empty,must be an integer or floating point number"
+  //   ),
+    body("ropani")
     .not()
     .isEmpty()
     .trim()
     .toFloat()
     .isFloat()
     .withMessage(
-      "Land area cannot be empty,must be an integer or floating point number"
+      "Ropani cannot be empty,must be an integer or floating point number"
+    ),
+    body("aana")
+    .not()
+    .isEmpty()
+    .trim()
+    .toFloat()
+    .isFloat()
+    .withMessage(
+      "Aana cannot be empty,must be an integer or floating point number"
     ),
   body("roadAccess")
     .not()
@@ -74,15 +92,33 @@ const homeValidation = [
     .withMessage(
       "Price cannot be empty,must be an integer or floating point number"
     ),
-  body("landArea")
+    body("ropani")
     .not()
     .isEmpty()
     .trim()
     .toFloat()
     .isFloat()
     .withMessage(
-      "Land area cannot be empty,must be an integer or floating point number"
+      "Ropani cannot be empty,must be an integer or floating point number"
     ),
+    body("aana")
+    .not()
+    .isEmpty()
+    .trim()
+    .toFloat()
+    .isFloat()
+    .withMessage(
+      "Aana cannot be empty,must be an integer or floating point number"
+    ),
+  // body("landArea")
+  //   .not()
+  //   .isEmpty()
+  //   .trim()
+  //   .toFloat()
+  //   .isFloat()
+  //   .withMessage(
+  //     "Land area cannot be empty,must be an integer or floating point number"
+  //   ),
   body("roadAccess")
     .not()
     .isEmpty()

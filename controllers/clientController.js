@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const createError = require("http-errors");
+const { generatePropertyArea } = require("../helpers/convertArea");
 const { clientData } = require("../helpers/createObject");
 
 const {
@@ -13,7 +14,6 @@ const {
 } = require("../services/clientService");
 const { findPropertyDetails } = require("../services/propertyService");
 
-
 const addClient = asyncHandler(async (req, res, next) => {
   try {
     const {
@@ -22,7 +22,8 @@ const addClient = asyncHandler(async (req, res, next) => {
       email,
       propertyType,
       price,
-      landArea,
+      ropani,
+      aana,
       waterSupply,
       roadAccess,
       kitchens,
@@ -56,7 +57,8 @@ const editClient = asyncHandler(async (req, res, next) => {
       email,
       propertyType,
       price,
-      landArea,
+      ropani,
+      aana,
       waterSupply,
       roadAccess,
       kitchens,
@@ -113,7 +115,18 @@ const deleteClient = asyncHandler(async (req, res, next) => {
 const getAllClients = asyncHandler(async (req, res, next) => {
   try {
     const brokerId = req.user.user.id;
-    const clients = await findAllClients(brokerId);
+    const docs = await findAllClients(brokerId);
+    // console.log(docs);
+    let clients = docs.map((doc) => {
+      console.log(doc.dataValues.landArea);
+      let area;
+      area = generatePropertyArea(doc.dataValues.landArea);
+      return {
+        ...doc.dataValues,
+        area,
+      };
+    });
+    console.log(clients);
     // console.log(clients);
     return res.send(clients);
   } catch (err) {
@@ -126,11 +139,14 @@ const getClientDetails = asyncHandler(async (req, res, next) => {
   try {
     const brokerId = req.user.user.id;
     const id = req.params.clientId;
-    const client = await findClientDetails(id, brokerId);
-    if (!client)
+    const doc = await findClientDetails(id, brokerId);
+    if (!doc)
       return res
         .status(400)
         .json({ errors: [{ message: "Cannot find a client " }] });
+    let area = generatePropertyArea(doc.dataValues.landArea);
+    let client = { ...doc.dataValues, area };
+
     return res.send(client);
   } catch (err) {
     // console.log(err);
@@ -156,6 +172,8 @@ const getAllClientsForPropertyLocation = asyncHandler(
         property
       );
       // console.log(requiredlocation);
+      console.log("matching clients hai...");
+      console.log(clients);
       return res.send(clients);
     } catch (err) {
       console.log(err);

@@ -22,6 +22,7 @@ const clientValidation = [
     // .matches(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g)
     .withMessage("Valid mobile number is required"),
 
+
   // oneOf([
   //   [
   body("price")
@@ -33,15 +34,33 @@ const clientValidation = [
     .withMessage(
       "Price cannot be empty,must be an integer or floating point number"
     ),
-  body("landArea")
+    body("ropani")
     .not()
     .isEmpty()
     .trim()
     .toFloat()
     .isFloat()
     .withMessage(
-      "Land area cannot be empty,must be an integer or floating point number"
+      "Ropani cannot be empty,must be an integer or floating point number"
     ),
+    body("aana")
+    .not()
+    .isEmpty()
+    .trim()
+    .toFloat()
+    .isFloat()
+    .withMessage(
+      "Aana cannot be empty,must be an integer or floating point number"
+    ),
+  // body("landArea")
+  //   .not()
+  //   .isEmpty()
+  //   .trim()
+  //   .toFloat()
+  //   .isFloat()
+  //   .withMessage(
+  //     "Land area cannot be empty,must be an integer or floating point number"
+  //   ),
   body("roadAccess")
     .not()
     .isEmpty()
@@ -102,6 +121,7 @@ const clientValidation = [
 
   (req, res, next) => {
     const errors = validationResult(req);
+    console.log(errors.array());
     if (!errors.isEmpty())
       return res.status(422).json({ errors: errors.array() });
     next();

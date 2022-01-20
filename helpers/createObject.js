@@ -1,7 +1,10 @@
+const { convertRopaniAanaToArea } = require("./convertArea");
+
 const homeData = async (homeData) => {
   const {
     price,
-    landArea,
+    ropani,
+    aana,
     roadAccess,
     waterSupply,
     kitchens,
@@ -18,7 +21,18 @@ const homeData = async (homeData) => {
   } = homeData;
   let home = {};
   if (price) home.price = price;
-  if (landArea) home.landArea = landArea;
+  // if (landArea) home.landArea = landArea;
+  let ropaniTotal;
+  let aanaTotal;
+  // let landArea;
+
+  if(ropani) ropaniTotal=ropani;
+  if(aana) aanaTotal=aana;
+
+  let area=await convertRopaniAanaToArea(ropaniTotal,aanaTotal);
+
+  if(area) home.landArea=area;
+  
   if (roadAccess) home.roadAccess = roadAccess;
   if (waterSupply) home.waterSupply = waterSupply;
   if (kitchens) home.kitchens = kitchens;
@@ -40,7 +54,8 @@ const homeData = async (homeData) => {
 const landData = async (landData) => {
   const {
     price,
-    landArea,
+    ropani,
+    aana,
     roadAccess,
     waterSupply,
     province,
@@ -53,7 +68,18 @@ const landData = async (landData) => {
   } = landData;
   let land = {};
   if (price) land.price = price;
-  if (landArea) land.landArea = landArea;
+  // if (landArea) land.landArea = landArea;
+  let ropaniTotal;
+  let aanaTotal;
+
+  console.log("ropani data from req body",ropani);
+  if(ropani) ropaniTotal=ropani;
+  if(aana) aanaTotal=aana;
+
+  let area=await convertRopaniAanaToArea(ropaniTotal,aanaTotal);
+
+  if(area) land.landArea=area;
+
   if (roadAccess) land.roadAccess = roadAccess;
   if (waterSupply) land.waterSupply = waterSupply;
 
@@ -75,7 +101,8 @@ const clientData = async (clientData) => {
     email,
     propertyType,
     price,
-    landArea,
+    ropani,
+    aana,
     roadAccess,
     waterSupply,
     kitchens,
@@ -96,7 +123,18 @@ const clientData = async (clientData) => {
   if (email) client.email = email;
   if (propertyType) client.propertyType = propertyType;
   if (price) client.price = price;
-  if (landArea) client.landArea = landArea;
+  // if (landArea) client.landArea = landArea;
+  let ropaniTotal;
+  let aanaTotal;
+  // let landArea;
+
+  if(ropani) ropaniTotal=ropani;
+  if(aana) aanaTotal=aana;
+
+  let area=await convertRopaniAanaToArea(ropaniTotal,aanaTotal);
+
+  if(area) client.landArea=area;
+
   if (roadAccess) client.roadAccess = roadAccess;
   if (waterSupply) client.waterSupply = waterSupply;
   if (propertyType == 1 && kitchens) {
