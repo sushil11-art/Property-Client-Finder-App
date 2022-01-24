@@ -40,7 +40,6 @@ const addLand = async (req, res, next) => {
       longitude,
     } = req.body;
     const { land, location } = await landData(req.body);
-    console.log(land);
     let newProperty = await addPropertyLand(land, location, brokerId, req);
     return res.send(newProperty);
   } catch (err) {
@@ -173,8 +172,7 @@ const deleteLand = asyncHandler(async (req, res, next) => {
     const id = req.params.propertyId;
     const brokerId = req.user.user.id;
     const property = await findProperty(id, brokerId);
-    // console.log("property Id is",req.params.propertyId);
-    // console.log("brokerId",brokerId);
+
     if (!property)
       return res
         .status(400)
@@ -207,7 +205,6 @@ const deleteHome = asyncHandler(async (req, res, next) => {
       property.dataValues.locationId
     );
     return res.status(200).json({ message: "Property Deleted " });
-    // return res.send(deletedLand);
   } catch (err) {
     console.log(err);
     return res.status(500).send("Server error", err);
@@ -218,7 +215,6 @@ const getAllProperty = asyncHandler(async (req, res, next) => {
   try {
     const brokerId = req.user.user.id;
     const docs = await findProperties(brokerId);
-    // console.log(properties);
     // convert propertyArea into ropani,aana
     let properties=docs.map((doc)=>{
       let area;
@@ -285,9 +281,7 @@ const allPropertyForClientLocation = asyncHandler(async (req, res, next) => {
       requiredlocation.dataValues.longitude,
       client
     );
-    // console.log("matching properties hai........")
-    // console.log(properties);
-    // console.log(requiredlocation);
+
     return res.send(properties);
   } catch (err) {
     console.log(err);

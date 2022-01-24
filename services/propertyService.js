@@ -110,6 +110,14 @@ const findNearestPropertiesForClientLocation = async (
   }
 };
 
+const totalPropertyCount=async(brokerId)=>{
+
+  return await Property.count({where:{brokerId:brokerId}});
+  // console.log(totalProperty);
+  // return totalProperty;
+
+}
+
 module.exports = {
   addPropertyLand,
   addPropertyHome,
@@ -119,6 +127,7 @@ module.exports = {
   removePropertyLand,
   removePropertyHome,
   findNearestPropertiesForClientLocation,
+  totalPropertyCount
 };
 
 // propoerty inner join location

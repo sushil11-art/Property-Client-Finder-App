@@ -107,7 +107,6 @@ const deleteClient = asyncHandler(async (req, res, next) => {
     );
     return res.status(200).json({ message: "Client Deleted " });
   } catch (err) {
-    // console.log(err);
     return res.status(500).send("Server error", err);
   }
 });
@@ -118,7 +117,6 @@ const getAllClients = asyncHandler(async (req, res, next) => {
     const docs = await findAllClients(brokerId);
     // console.log(docs);
     let clients = docs.map((doc) => {
-      console.log(doc.dataValues.landArea);
       let area;
       area = generatePropertyArea(doc.dataValues.landArea);
       return {
@@ -171,9 +169,7 @@ const getAllClientsForPropertyLocation = asyncHandler(
         location.dataValues.longitude,
         property
       );
-      // console.log(requiredlocation);
-      console.log("matching clients hai...");
-      console.log(clients);
+   
       return res.send(clients);
     } catch (err) {
       console.log(err);

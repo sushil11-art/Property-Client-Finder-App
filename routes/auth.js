@@ -3,6 +3,7 @@ const {
   registerBroker,
   loginBroker,
   changePassword,
+  getProfileDetails,
 } = require("../controllers/authController");
 const { authenticateToken } = require("../middlewares/jwtTokenAuthentication");
 const { registerValidation, changePasswordValidation } = require("../validation/authValidations");
@@ -17,5 +18,7 @@ router.post("/registerBroker", registerValidation, registerBroker);
 router.post("/loginBroker", loginBroker);
 
 router.post("/changePassword", authenticateToken, changePasswordValidation,changePassword);
+
+router.get("/profile-details",authenticateToken,getProfileDetails);
 
 module.exports = router;

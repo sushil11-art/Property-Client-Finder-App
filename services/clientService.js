@@ -91,6 +91,10 @@ const findNearestClientsForPropertyLocation = async (
 const checkIfClientExists = async (brokerId, email) => {
   return await Client.findOne({ where: { brokerId: brokerId, email: email } });
 };
+const totalClientCount=async(brokerId)=>{
+  return await Client.count({where:{brokerId:brokerId}});
+
+}
 
 module.exports = {
   addClientDetails,
@@ -101,4 +105,5 @@ module.exports = {
   findClientDetails,
   checkIfClientExists,
   findNearestClientsForPropertyLocation,
+  totalClientCount
 };

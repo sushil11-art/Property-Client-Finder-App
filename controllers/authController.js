@@ -8,6 +8,8 @@ const {
   findBrokerWithId,
   updateBrokerPassword,
 } = require("../services/brokerService");
+const { totalPropertyCount } = require("../services/propertyService");
+const { totalClientCount } = require("../services/clientService");
 
 const registerBroker = asyncHandler(async (req, res, next) => {
   console.log(req.body);
@@ -24,6 +26,7 @@ const registerBroker = asyncHandler(async (req, res, next) => {
     const newUser = await createBroker(username, email, hashedPassword);
     return res.send(newUser);
   } catch (err) {
+    console.log(err);
     return res.status(500).send("Server error", err);
   }
 });
@@ -88,4 +91,28 @@ const changePassword = async (req, res, next) => {
   }
 };
 
-module.exports = { registerBroker, loginBroker, changePassword };
+const getProfileDetails=async(req,res,next)=>{
+  try{
+    const userId = req.user.user.id;
+    let broker = await findBrokerWithId(userId);
+    console.log(broker);
+    let profileDetails={};
+    if (!broker) {
+      return res
+        .status(400)
+        .json({ errors: [{ message: "User does not exists" }] });
+    }
+    let propertyCount=await totalPropertyCount(userId);
+    let clientCount=await totalClientCount(userId);
+
+    return res.send({ message: "Details fetched successfully" ,data:{broker,propertyCount,clientCount}});
+
+
+  }
+  catch(err){
+    console.log(err);
+    return res.status(500).send("Server error", err);
+  }
+}
+
+module.exports = { registerBroker, loginBroker, changePassword ,getProfileDetails};
