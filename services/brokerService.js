@@ -10,7 +10,7 @@ const createBroker = async (username, email, password) => {
 };
 
 const findBrokerWithId = async (id) => {
-  return await Broker.findOne({ where: { id: id } ,attributes:{exclude: ['password']}});
+  return await Broker.findOne({ where: { id: id } });
 };
 
 const updateBrokerPassword = async (id, password) => {
