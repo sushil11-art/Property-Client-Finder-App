@@ -129,51 +129,6 @@ const clientValidation = [
   // next();
 ];
 
-// const validateAdditionalDetailsForHome = (
-//   kitchens,
-//   bathrooms,
-//   bedrooms,
-//   floors
-// ) => {
-//   let errors = [];
-//   let regexPattern = /^-?[0-9]+$/;
 
-//   // check if the passed number is integer or float
-//   let kitchen = regexPattern.test(kitchens);
-//   let bathroom = regexPattern.test(bathrooms);
-//   let bedroom = regexPattern.test(bedrooms);
-//   let floor = regexPattern.test(floors);
-
-//   // if(propertyType==1){
-//     // for home
-//     if (!kitchen) {
-//       const message = {
-//         msg: "Kitchens must be a integer",
-//       };
-
-//       errors.push(message);
-//     }
-//     if (!bathroom) {
-//       const message = {
-//         msg: "Bathrooms must be a integer",
-//       };
-//       errors.push(message);
-//     }
-//     if (!bedroom) {
-//       const message = {
-//         msg: "Bedrooms must be a integer",
-//       };
-//       errors.push(message);
-//     }
-//     if(!(parseInt(floors))){
-//       const message = {
-//         msg: "Floors must be a integer or floating point value",
-//       };
-//       errors.push(message);
-//     }
-//     return errors;
-
-//   }
-// }
 
 module.exports = { clientValidation };

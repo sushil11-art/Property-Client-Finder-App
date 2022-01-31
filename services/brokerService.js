@@ -13,6 +13,13 @@ const findBrokerWithId = async (id) => {
   return await Broker.findOne({ where: { id: id } });
 };
 
+const updateBrokerProfile = async (username, imageUrl, id) => {
+  return await Broker.update(
+    { username: username, imageUrl: imageUrl },
+    { where: { id: id } }
+  );
+};
+
 const updateBrokerPassword = async (id, password) => {
   return await Broker.update({ password: password }, { where: { id: id } });
 };
@@ -21,4 +28,5 @@ module.exports = {
   createBroker,
   findBrokerWithId,
   updateBrokerPassword,
+  updateBrokerProfile
 };

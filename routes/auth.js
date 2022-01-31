@@ -4,9 +4,11 @@ const {
   loginBroker,
   changePassword,
   getProfileDetails,
+  editProfile,
 } = require("../controllers/authController");
 const { authenticateToken } = require("../middlewares/jwtTokenAuthentication");
-const { registerValidation, changePasswordValidation } = require("../validation/authValidations");
+const { updateBrokerProfile } = require("../services/brokerService");
+const { registerValidation, changePasswordValidation, updateProfileValidation } = require("../validation/authValidations");
 const router = express.Router();
 // const authController = require("../controllers/authController");
 
@@ -20,5 +22,7 @@ router.post("/loginBroker", loginBroker);
 router.post("/changePassword", authenticateToken, changePasswordValidation,changePassword);
 
 router.get("/profile-details",authenticateToken,getProfileDetails);
+
+router.put("/edit-profile",authenticateToken,updateProfileValidation,editProfile);
 
 module.exports = router;

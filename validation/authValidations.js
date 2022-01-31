@@ -1,7 +1,11 @@
 const { body, validationResult } = require("express-validator");
 
 const registerValidation = [
-  body("username").not().isEmpty().isLength({min:6}).withMessage("Username is required"),
+  body("username")
+    .not()
+    .isEmpty()
+    .isLength({ min: 6 })
+    .withMessage("Username is required"),
   body("password")
     .not()
     .isEmpty()
@@ -36,4 +40,13 @@ const changePasswordValidation = [
   },
 ];
 
-module.exports = { registerValidation, changePasswordValidation };
+const updateProfileValidation = [
+  body("username")
+    .not()
+    .isEmpty()
+    .isLength({ min: 6 })
+    .withMessage("Username is required"),
+  body("imageUrl").not().isEmpty().withMessage("Image url is required"),
+];
+
+module.exports = { registerValidation, changePasswordValidation ,updateProfileValidation};

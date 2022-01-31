@@ -7,6 +7,7 @@ const {
   createBroker,
   findBrokerWithId,
   updateBrokerPassword,
+  updateBrokerProfile,
 } = require("../services/brokerService");
 const { totalPropertyCount } = require("../services/propertyService");
 const { totalClientCount } = require("../services/clientService");
@@ -91,28 +92,53 @@ const changePassword = async (req, res, next) => {
   }
 };
 
-const getProfileDetails=async(req,res,next)=>{
-  try{
+const getProfileDetails = async (req, res, next) => {
+  try {
     const userId = req.user.user.id;
     let broker = await findBrokerWithId(userId);
     console.log(broker);
-    let profileDetails={};
+    // let profileDetails={};
     if (!broker) {
       return res
         .status(400)
         .json({ errors: [{ message: "User does not exists" }] });
     }
-    let propertyCount=await totalPropertyCount(userId);
-    let clientCount=await totalClientCount(userId);
+    let propertyCount = await totalPropertyCount(userId);
+    let clientCount = await totalClientCount(userId);
 
-    return res.send({ message: "Details fetched successfully" ,data:{broker,propertyCount,clientCount}});
-
-
-  }
-  catch(err){
+    return res.send({
+      message: "Details fetched successfully",
+      data: { broker, propertyCount, clientCount },
+    });
+  } catch (err) {
     console.log(err);
     return res.status(500).send("Server error", err);
   }
-}
+};
 
-module.exports = { registerBroker, loginBroker, changePassword ,getProfileDetails};
+const editProfile = async (req, res, next) => {
+  try {
+    const userId = req.user.user.id;
+    const { username, imageUrl } = req.body;
+    let broker = await findBrokerWithId(userId);
+    if (!broker) {
+      return res
+        .status(400)
+        .json({ errors: [{ message: "User does not exists" }] });
+    }
+
+    await updateBrokerProfile(username, imageUrl, userId);
+    return res.status(200).json({ message: "Profile Updated" });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Server error", err);
+  }
+};
+
+module.exports = {
+  registerBroker,
+  loginBroker,
+  changePassword,
+  getProfileDetails,
+  editProfile
+};
