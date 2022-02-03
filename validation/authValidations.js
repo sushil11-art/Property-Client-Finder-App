@@ -46,7 +46,7 @@ const updateProfileValidation = [
     .isEmpty()
     .isLength({ min: 6 })
     .withMessage("Username is required"),
-  body("imageUrl").not().isEmpty().withMessage("Image url is required"),
+  // body("imageUrl").not().isEmpty().withMessage("Image url is required"),
 ];
 
 module.exports = { registerValidation, changePasswordValidation ,updateProfileValidation};
